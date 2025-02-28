@@ -1,10 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { useProducts } from '@/hooks/useProducts';
 import { ProductList } from '@/components/product/product-list';
 import { ProductFilter } from '@/components/product/product-filter';
-import { Button } from '@/components/ui/button';
 import {
   Pagination,
   PaginationContent,
@@ -31,14 +29,6 @@ export default function ProductsPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">
-          Produtos
-        </h1>
-        <Link href="/products/create">
-          <Button>Adicionar Produto</Button>
-        </Link>
-      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="md:col-span-1">

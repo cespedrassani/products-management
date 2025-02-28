@@ -1,7 +1,9 @@
 import React from 'react';
 import { useCategories } from '@/hooks/useCategories';
 import { ProductFilters } from '@/lib/types';
-import { Label } from '../ui/label';
+import { Label } from '@/components/ui/label';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 interface ProductFilterProps {
   filters: ProductFilters;
@@ -49,6 +51,12 @@ export const ProductFilter: React.FC<ProductFilterProps> = ({
           <option value="asc">Menor preço</option>
           <option value="desc">Maior preço</option>
         </select>
+      </div>
+
+      <div className='space-y-2'>
+        <Link href="/products/create">
+          <Button className='w-full'>Adicionar Produto</Button>
+        </Link>
       </div>
     </div>
   );

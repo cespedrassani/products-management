@@ -166,7 +166,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             variant="outline"
             onClick={() => window.history.back()}
           >
-            Cancelar
+            Voltar
           </Button>
           <Button type="submit" disabled={isSubmitting}>
             {isSubmitting ? 'Salvando...' : isEditing ? 'Atualizar' : 'Criar'}

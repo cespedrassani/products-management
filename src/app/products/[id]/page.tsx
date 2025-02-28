@@ -8,6 +8,7 @@ import { Product } from '@/lib/types';
 import { ProductService } from '@/lib/api';
 import { ProductDeleteDialog } from '@/components/product/product-delete-dialog';
 import { Button } from '@/components/ui/button';
+import { formatCurrency } from '@/lib/utils';
 
 export default function ProductDetailPage({ params }: { params: Usable<{ id: string }> }) {
   const unwrappedParams = use<{ id: string }>(params);
@@ -86,26 +87,6 @@ export default function ProductDetailPage({ params }: { params: Usable<{ id: str
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="flex flex-col md:flex-row justify-between items-start mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">
-          Detalhes do Produto
-        </h1>
-        <div className="flex space-x-4">
-          <Link href="/products">
-            <Button variant="outline">Voltar</Button>
-          </Link>
-          <Link href={`/products/edit/${product.id}`}>
-            <Button variant="secondary">Editar</Button>
-          </Link>
-          <Button
-            variant="destructive"
-            onClick={() => setIsDeleteDialogOpen(true)}
-          >
-            Excluir
-          </Button>
-        </div>
-      </div>
-
       <div className="bg-white rounded-lg shadow-lg border-[0.1px] overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="p-8 flex items-center justify-center">
@@ -130,7 +111,7 @@ export default function ProductDetailPage({ params }: { params: Usable<{ id: str
 
             <div className="flex items-center mb-4 justify-between">
               <span className="text-2xl font-bold text-lime-700 mr-4">
-                R$ {product.price.toFixed(2).replace('.', ',')}
+                {formatCurrency(product.price)}
               </span>
               <div className="flex items-center">
                 <svg
@@ -152,6 +133,21 @@ export default function ProductDetailPage({ params }: { params: Usable<{ id: str
             </span>
 
             <p className="text-black font-normal text-sm mb-6">{product.description}</p>
+
+            <div className="flex items-end justify-end space-x-4">
+              <Link href="/products">
+                <Button variant="outline">Voltar</Button>
+              </Link>
+              <Link href={`/products/edit/${product.id}`}>
+                <Button variant="secondary">Editar</Button>
+              </Link>
+              <Button
+                variant="destructive"
+                onClick={() => setIsDeleteDialogOpen(true)}
+              >
+                Excluir
+              </Button>
+            </div>
           </div>
         </div>
       </div>

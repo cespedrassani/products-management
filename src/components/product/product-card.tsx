@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
+import { formatCurrency } from '@/lib/utils';
 
 interface ProductCardProps {
   product: Product;
@@ -12,9 +13,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const isHighRated = product.rating && product.rating.rate > 4.5;
 
   return (
-    <div className={`rounded-lg border-[0.1px] shadow-md overflow-hidden transition-transform hover:scale-105 ${isHighRated ? 'border-2 border-yellow-400' : ''}`}>
+    <div className={`rounded-lg border-[0.1px] shadow-md overflow-hidden transition-transform hover:scale-102 ${isHighRated ? 'border-2 border-yellow-400' : ''}`}>
       <Link href={`/products/${product.id}`}>
-        <div className="bg-white relative h-48 w-full flex items-center justify-center p-4">
+        <div className="bg-white relative h-44 w-full flex items-center justify-center p-4">
           <Image
             src={product.image}
             alt={product.title}
@@ -38,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <div className="flex justify-between items-center mt-2">
             <span className="text-lg font-bold text-cyan-600">
-              R$ {product.price.toFixed(2).replace('.', ',')}
+              {formatCurrency(product.price)}
             </span>
             <div className="flex items-center">
               <span className="text-sm text-gray-400 flex items-center">
